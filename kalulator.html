@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+        Minimalny termin składania ofert i wniosków o dopuszczenie do udziału w
+        postępowaniu
+    </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pl.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/4e229b7e94.js" crossorigin="anonymous"></script>
+
+    <style>
+        html * {
+            font-family: 'Lato', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .rounded-box {
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+
+        .green-bar {
+            background: linear-gradient(#297063, #50b192);
+            padding: 10px;
+            color: #ffffff;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #f5f5f5;
+            padding: 10px;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .calculate-button {
+            background-color: #FBE561;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #000000;
+            width: 30%;
+        }
+
+
+        .result-box {
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-header {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .result-content {
+            padding: 20px;
+        }
+
+        .result-date-bar {
+            background-color: #eff8f5;
+            padding: 10px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .clear-button {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 25px;
+            padding: 10px;
+            color: #000000;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            height: 38px;
+        }
+
+        .selectpicker {
+            flex: 1;
+            margin-right: 10px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 1px;
+            text-overflow: '';
+            -ms-expand: none;
+            background-image: none;
+        }
+
+        .input-group-append {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            height: 100%;
+            cursor: pointer;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            background-color: #f4f4f7;
+            border: 2px solid #c3c3c3;
+            border-left: none;
+        }
+
+        .input-group-append img {
+            max-height: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .input-group .selectpicker {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiI+PHBhdGggZD0iTTEwLjUgOS4yOUw1LjgxIDguMzI4LjgzIDIuNjggMy43MzggNS44OCA1Ljg4IDkuMjkgMTAuNSAxMC41IDkuMjkiIHN0eWxlPSJmaWxsOmJsYWNrOyIvPjwvc3ZnPgo=');
+            background-repeat: no-repeat;
+            background-position: right 8px top 50%;
+            padding-right: 20px;
+            padding-left: 2px;
+        }
+
+        .dropdown-toggle::after {
+            display: none !important;
+        }
+
+        .input-group .bootstrap-select.form-control .dropdown-toggle {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            /*border: 1px solid #C3C3C3;*/
+            border-right: none;
+        }
+
+        .bootstrap-select > .dropdown-toggle.bs-placeholder {
+            background-color: white;
+            border: 1px solid #c3c3c3;
+            border-right: none;
+        }
+
+        .filter-option {
+            border: 1px solid #c3c3c3;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-right: none;
+        }
+
+        #dateResultInfoContainer {
+            text-align: left;
+        }
+
+        .dropdown-item.active, .dropdown-item:active {
+            background-color: #DAE0E5;
+            color: black;
+        }
+
+        #datepicker {
+            margin-right: 0;
+            border: 2px solid #c3c3c3;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-right: none;
+            padding-left: 12px;
+        }
+
+        .filter-option {
+            color: black;
+        }
+
+        .form-control::placeholder {
+            color: black;
+        }
+
+        label {
+            color: #C3C3C3;
+            font-weight: bold;
+        }
+
+        .datepicker td, th {
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: black !important;
+            border-color: unset !important;
+            text-shadow: unset;
+        }
+
+        .datepicker table tr td.active {
+            background-image: linear-gradient(45deg, #c3c3c3, #c3c3c3);
+        }
+
+        .datepicker table tr td.active:hover.active {
+            background-image: linear-gradient(45deg, #c3c3c3, #c3c3c3);
+        }
+
+        .parent-class .form-group input[type=text]:focus,
+        .parent-class .form-group [type=text].form-control:focus {
+            box-shadow: none;
+        }
+
+        .btn-light.focus, .btn-light:focus {
+            box-shadow: none;
+        }
+
+        #date {
+            display: block;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border: 2px solid #c3c3c3;
+            border-right: none;
+            box-shadow: none;
+        }
+
+        .btn-light {
+            background-color: white;
+            border: 1px solid #c3c3c3;
+        }
+
+        .highlight-red {
+            color: #A94442;
+        }
+
+        #calculationText {
+            font-weight: bold;
+        }
+
+        #dateCalculationInfo {
+            text-align: left;
+        }
+
+        #additionalTextInfo {
+            text-align: left;
+            color: #4F826C;
+            padding-left: 2%;
+        }
+
+        #exclamation-mark {
+            color: #55D39B;
+            position: absolute;
+            margin-top: 1%;
+            transform: scale(3, 3);
+        }
+
+        #exclamation-mark-alert {
+            color: #55D39B;
+            position: absolute;
+            margin-top: 1%;
+            transform: scale(3, 3);
+        }
+
+        #alertLabel {
+            text-align: left;
+            color: black;
+            padding-left: 2%;
+            display: block;
+            background-color: #EFF8F5;
+            border-radius: 15px
+        }
+
+        #validation-container {
+            color: #A94442;
+            font-weight: bold;
+            display: none;
+        }
+
+        .dropdown-item.active, .dropdown-item:active {
+            background-color: unset;
+            color: black;
+        }
+
+        .btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show > .btn-light.dropdown-toggle {
+            background-color: #F8F9FA;
+            border-color: #d3d9df;
+        }
+
+        #additionalTextInfoContainer {
+            display: none;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div class="rounded-box">
+        <div class="green-bar">
+            <h4>Kalkulator terminu składania ofert</h4>
+        </div>
+        <div class="form-content">
+            <form>
+                <div class="container mt-5">
+                    <label for="kindOfOrderSelect" id="kindOfOrderSelectLabel">Rodzaj zamówienia:</label>
+                    <div class="input-group" style="color: black !important;">
+                        <select class="selectpicker form-control shadow-none"
+                                title="Wybierz"
+                                id="kindOfOrderSelect"
+                                onchange="validateInputs(true, 'KIND_OF_ORDER_SELECT');"
+                        >
+                            <option value="DOSTAWY">Dostawy</option>
+                            <option value="USLUGI">Usługi</option>
+                            <option value="ROBOTY_BUDOWLANE">Roboty budowlane</option>
+                        </select>
+
+                        <div class="input-group-append" id="kindOfOrderSelectAppend"
+                             onclick="openSelect('kindOfOrderSelect')">
+                            <i class="fa fa-angle-down" style="color: #767676;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt-5">
+                    <label for="procedureSelect" id="procedureSelectLabel">Procedura:</label>
+                    <div class="input-group">
+                        <select class="selectpicker form-control" title="Wybierz" id="procedureSelect"
+                                onchange="validateInputs(false, 'PROCEDURE_SELECT'); handleProcedureChange(false)">
+                            <option>Krajowa</option>
+                            <option>Unijna</option>
+                        </select>
+                        <div class="input-group-append" id="procedureSelectAppend"
+                             onclick="openSelect('procedureSelect')">
+                            <i class="fa fa-angle-down" style="color: #767676;"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="typeOfOrderSection" style="display: none">
+                    <div class="container mt-5">
+                        <label for="typeOfOrderSelect" id="typeOfOrderSelectLabel">Typ:</label>
+                        <div class="input-group">
+                            <select class="selectpicker form-control" title="Wybierz" id="typeOfOrderSelect"
+                                    onchange="validateInputs(false, 'PROCEDURE_SELECT'); handleProcedureChange(false)">
+                                <option value="ZAMOWIENIA_KLASYCZNE">Zamówienia klasyczne</option>
+                                <option value="ZAMOWIENIA_SEKTOROWE">Zamówienia sektorowe</option>
+                                <option value="ZAMOWIENIA_W_DZIEDZINIE_OBRONNOSCI_I_BEZPIECZENSTWA">Zamówienia w
+                                    dziedzinie
+                                    obronności i
+                                    bezpieczeństwa
+                                </option>
+                            </select>
+
+                            <div class="input-group-append" onclick="openSelect('typeOfOrderSelect')">
+                                <i class="fa fa-angle-down" style="color: #767676;"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="modeSection" class="container mt-5">
+                    <label for="modeSelect" id="modeSelectLabel">Tryb:</label>
+                    <div class="input-group">
+                        <select class="selectpicker form-control"
+                                title="Wybierz"
+                                id="modeSelect"
+                                onchange="validateInputs(false, 'MODE_SELECT'); handleModeChange(false)"
+                        >
+                        </select>
+
+                        <div class="input-group-append" onclick="openSelect('modeSelect')">
+                            <i class="fa fa-angle-down" style="color: #767676;"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div id="documentTypeSection" style="display: none;">
+                    <div class="container mt-5">
+                        <label for="documentTypeSelect">Rodzaj dokumentu:</label>
+                        <div class="input-group">
+                            <select class="selectpicker form-control"
+                                    id="documentTypeSelect"
+                                    title="Wybierz"
+                                    onchange="setResult()"
+                            >
+                            </select>
+                            <div class="input-group-append" onclick="openSelect('documentTypeSelect')">
+                                <i class="fa fa-angle-down" style="color: #767676;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="container mt-5" id="alert-container" style="display: none">
+                        <i class="fa fa-exclamation"
+                           id="exclamation-mark-alert"></i>
+                        <span id="alertLabel"></span>
+                    </div>
+                </div>
+
+
+                <div id="dateContainer" style="display: none;">
+                    <div class="container mt-5">
+                        <label for="date" id="datepickerLabel"></label>
+                        <div class="input-group" id="datepickerContainer">
+                            <input data-bind="value: startDate, event: {change: savePerishableDate}"
+                                   id="date"
+                                   class="form-control"
+                                   type="text"
+                                   name="date"
+                                   title="Wybierz"
+                                   placeholder="Wybierz"
+                                   data-date-week-start="1"
+                                   onchange="setResult()"
+                            >
+                            <div class="input-group-append" onclick="openCalendarInput()">
+                                <i class="fa fa-calendar-check" style="color: #767676;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt-5" id="validation-container">
+                    <p>Wypełnij obowiązkowe pola.</p>
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="footer" id="footer">
+            <button class="calculate-button" onclick="showResults()">Oblicz</button>
+        </div>
+    </div>
+
+    <div id="resultBox" class="result-box" style="display:none;">
+        <div class="green-bar">
+            <h4>Wyniki</h4>
+        </div>
+        <div class="result-content">
+            <p id="calculationText">Minimalny termin składania ofert:</p>
+            <div class="result-date-bar">
+                <div class="information">
+                    <p id="resultInfo">
+                    </p>
+                </div>
+                <div id="dateResultInfoContainer">
+                    <div>
+                        <p id="dateCalculationInfo">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="additionalTextInfoContainer">
+                <i class="fa fa-exclamation"
+                   id="exclamation-mark"></i>
+                <p id="additionalTextInfo" class="result-date-bar">
+                </p>
+            </div>
+        </div>
+        <div class="result-footer">
+            <button class="clear-button" onclick="hardReset()">
+                <i class="fa-regular fa-trash-can" style="color: #909090;"></i>
+                <span style="padding: 12px;">Wyczyść</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    let VALIDATION_ERROR = false;
+    let RESULT_DISPLAYED = false;
+
+    function openCalendarInput() {
+        var datepickerInput = $("#date");
+        datepickerInput.focus().click();
+    }
+
+    $(document).ready(function () {
+        $('#kindOfOrderSelect').selectpicker();
+
+        function openSelect() {
+            $('#kindOfOrderSelect').selectpicker('toggle');
+        }
+
+        $('#customSelectTrigger').on('click', function () {
+            openSelect();
+        });
+    });
+
+
+    function openSelect(select) {
+        let selectId = "#" + select;
+        $(selectId).selectpicker('toggle')
+    }
+
+    function resetDateInput() {
+        document.getElementById("date").value = "Wybierz";
+    }
+
+    function handleModeChange(isFinalCalulaction) {
+        const alertContainer = document.getElementById("alert-container");
+        alertContainer.style.display = "none";
+        if (!VALIDATION_ERROR) {
+            // resetDateInput();
+            document.getElementById("footer").style.display = 'block';
+            const documentTypeSelect = document.getElementById("documentTypeSelect");
+            const documentTypeSection = document.getElementById("documentTypeSection");
+            const resultInformationContainer = document.getElementById("resultInfo");
+            resultInformationContainer.innerHTML = "";
+            if (!isFinalCalulaction) {
+                documentTypeSelect.innerHTML = "";
+            }
+            const procedureSelect = document.getElementById("procedureSelect");
+            const typeOfOrderSection = document.getElementById("typeOfOrderSection");
+            if (!isFinalCalulaction) {
+                if (procedureSelect.value.toUpperCase() === "UNIJNA") {
+                    if (document.getElementById('modeSelect').value !== '') {
+                        documentTypeSection.style.display = "block";
+                        documentTypeSelect.style.display = "block";
+                    }
+                    const typeOfOrderSelectValue = document.getElementById("typeOfOrderSelect").value;
+                    if (typeOfOrderSelectValue === "ZAMOWIENIA_KLASYCZNE") {
+                        switch (document.getElementById("modeSelect").value) {
+                            case "PRZETARG_NIEOGRANICZONY":
+                                documentTypeSection.style.display = "none";
+                                break;
+                            case "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA":
+                                documentTypeSection.style.display = "none";
+
+                                break;
+                            case "PRZETARG_OGRANICZONY":
+                                setUnijnaKlasycznePrzetargOgraniczonyOptions();
+                                break;
+                            case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA":
+                                setUnijnaKlasycznePrzetargOgraniczonyProceduraSkroconaOptions();
+                                break;
+                            case "NEGOCJACJE_Z_OGLOSZENIEM":
+                                setUnijnaKlasyczneNegocjacjeZOgloszeniemOptions();
+                                break;
+                            case "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA":
+                                setUnijnaKlasyczneNegocjacjeZOgloszeniemProceduraSkroconaOptions();
+                                break;
+                            case "DIALOG_KONKURENCYJNY":
+                                setUnijnaKlasyczneDialogKonkurencyjnyOptions();
+                                break;
+                            case "PARTNERSTWO_INNOWACYJNE":
+                                setUnijnaKlasycznePartnerstwoInnowacyjneOptions();
+                                break;
+                            case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                                documentTypeSection.style.display = "none";
+                                break;
+                            case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                                documentTypeSection.style.display = "none";
+                                setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta");
+                                break;
+                            case "DYNAMICZNY_SYSTEM_ZAKUPOW":
+                                setUnijnaKlasyczneDynamicznySystemZakupowOptions();
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (typeOfOrderSelectValue === "ZAMOWIENIA_SEKTOROWE") {
+                        switch (document.getElementById("modeSelect").value) {
+                            case "PRZETARG_NIEOGRANICZONY":
+                                documentTypeSection.style.display = "none";
+                                break;
+                            case "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA":
+                                documentTypeSection.style.display = "none";
+                                break;
+                            case "PRZETARG_OGRANICZONY":
+                                setUnijnaSektorowePrzetargOgraniczonyOptions();
+                                break;
+                            case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA":
+                                setUnijnaSektorowePrzetargOgraniczonyProceduraSkroconaOptions();
+                                break;
+                            case "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM":
+                                setUnijnaSektoroweNegocjacjeZOgloszeniemOptions();
+                                break;
+                            case "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA":
+                                setUnijnaSektoroweNegocjacjeZOgloszeniemProceduraSkroconaOptions();
+                                break;
+                            case "DIALOG_KONKURENCYJNY":
+                                setUnijnaSektoroweDialogKonkurencyjnyOptions();
+                                break;
+                            case "DIALOG_KONKURENCYJNY_PROCEDURA_SKROCONA":
+                                setUnijnaSektoroweDialogKonkurencyjnyProceduraSkroconaOptions();
+                                break;
+                            case "PARTNERSTWO_INNOWACYJNE":
+                                setUnijnaSektorowePartnerstwoInnowacyjneOptions();
+                                break;
+                            case "PARTNERSTWO_INNOWACYJNE_PROCEDURA_SKROCONA":
+                                setUnijnaSektorowePartnerstwoInnowacyjneProceduraSkroconaOptions();
+                                break;
+                            case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                                documentTypeSection.style.display = "none";
+                                break;
+                            case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                                documentTypeSection.style.display = "none";
+                                setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta");
+                                break;
+                            case "DYNAMICZNY_SYSTEM_ZAKUPOW":
+                                setUnijnaSektoroweDynamicznySystemZakupowOptions();
+                                break;
+                            default:
+                                break;
+                        }
+                    } else if (typeOfOrderSelectValue === "ZAMOWIENIA_W_DZIEDZINIE_OBRONNOSCI_I_BEZPIECZENSTWA") {
+                        switch (document.getElementById("modeSelect").value) {
+                            case "PRZETARG_OGRANICZONY":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaPrzetargOgraniczonyOptions();
+                                break;
+                            case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaPrzetargOgraniczonyProceduraSkroconaOptions();
+                                break;
+                            case "PRZETARG_OGRANICZONY_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaPrzetargOgraniczonyPilnaPotrzebaOptions();
+                                break;
+                            case "NEGOCJACJE_Z_OGLOSZENIEM":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaNegocjacjeZOgloszeniemOptions();
+                                break;
+                            case "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaNegocjacjeZOgloszeniemProceduraSkroconaOptions();
+                                break;
+                            case "NEGOCJACJE_Z_OGLOSZENIEM_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaNegocjacjeZOgloszeniemPilnaPotrzebaOptions();
+                                break;
+                            case "DIALOG_KONKURENCYJNY":
+                                setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaDialogKonkurencyjnyOptions();
+                                break;
+                            case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                                documentTypeSection.style.display = "none";
+                                break;
+                            case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                                documentTypeSection.style.display = "none";
+                                setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta");
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        const dateContainer = document.getElementById("dateContainer");
+                        dateContainer.style.display = "none";
+                        documentTypeSection.style.display = "none";
+                        RESULT_DISPLAYED = false;
+                    }
+                } else if (procedureSelect.value.toUpperCase() === "KRAJOWA") {
+                    typeOfOrderSection.style.display = "none";
+                    switch (document.getElementById("modeSelect").value) {
+                        case "TRYB_PODSTAWOWY_BEZ_NEGOCJACJI":
+                            documentTypeSection.style.display = "none";
+                            break;
+                        case "TRYB_PODSTAWOWY_Z_MOZLIWOSCIA_NEGOCJACJI":
+                            documentTypeSection.style.display = "block";
+                            setKrajowaZMozliwosciaNegocjacjiOptions()
+                            break;
+                        case "TRYB_PODSTAWOWY_Z_NEGOCJACJAMI":
+                            documentTypeSection.style.display = "block";
+                            setKrajowaPodstawowyZNegocjacjamiOptions();
+                            break;
+                        case "PARTNERSTWO_INNOWACYJNE":
+                            documentTypeSection.style.display = "block";
+                            setKrajowaPartnerstwoInnowacyjneOptions();
+                            break;
+                        case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                            documentTypeSection.style.display = "none";
+                            break;
+                        case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                            documentTypeSection.style.display = "none";
+                            setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta", true, true);
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    hideSections();
+                }
+            }
+            setResult();
+        }
+    }
+
+    function setResult() {
+        const resultInformationContainer = document.getElementById("resultInfo");
+        resultInformationContainer.innerHTML = "";
+        const procedureSelect = document.getElementById("procedureSelect");
+        const documentTypeSelectValue = document.getElementById("documentTypeSelect").value;
+
+        if (procedureSelect.value.toUpperCase() === "UNIJNA" && document.getElementById('modeSelect').value !== '') {
+            documentTypeSection.style.display = "block";
+            documentTypeSelect.style.display = "block";
+
+            const typeOfOrderSelectValue = document.getElementById("typeOfOrderSelect").value;
+
+            if (typeOfOrderSelectValue === "ZAMOWIENIA_KLASYCZNE") {
+                switch (document.getElementById("modeSelect").value) {
+                    case "PRZETARG_NIEOGRANICZONY":
+                        setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        documentTypeSection.style.display = "none";
+                        break;
+                    case "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA":
+                        setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        documentTypeSection.style.display = "none";
+                        break;
+                    case "PRZETARG_OGRANICZONY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert wstępnych.");
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy " +
+                                " ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                                "do ich przygotowania i złożenia.", true, true);
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert wstępnych.");
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania " +
+                                "ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                                "do ich przygotowania i złożenia.", true, true);
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz " +
+                                "czasu niezbędnego do ich przygotowania i złożenia.", true, true);
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu " +
+                                "składania ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza " +
+                                "terminy składania ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia " +
+                                "oraz czasu niezbędnego do ich przygotowania i złożenia", true, true);
+                        }
+                        break;
+                    case "PARTNERSTWO_INNOWACYJNE":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Data przekazania wykonawcom zaproszenia do składania ofert wstępnych.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz " +
+                                "czasu niezbędnego do ich przygotowania i złożenia", true, true);
+                        }
+                        break;
+                    case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                            "ofert. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania " +
+                            "ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                            "do ich przygotowania i złożenia", true, true);
+                        break;
+                    case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                        setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta", true, true);
+                        documentTypeSection.style.display = "none";
+                        break;
+                    case "DYNAMICZNY_SYSTEM_ZAKUPOW":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_DYNAMICZNYM_SYSTEMIE_ZAKUPOW') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej " +
+                                "lub data przekazania zaproszenia do potwierdzenia zainteresowania");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania wykonawcom zaproszenia do składania ofert.");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            } else if (typeOfOrderSelectValue === "ZAMOWIENIA_SEKTOROWE") {
+                switch (document.getElementById("modeSelect").value) {
+                    case "PRZETARG_NIEOGRANICZONY":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        break;
+                    case "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        break;
+                    case "PRZETARG_OGRANICZONY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej " +
+                                "lub data przekazania zaproszenia do potwierdzenia zainteresowania");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 384 pkt 2 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem czasu potrzebnego na przygotowanie i złożenie oferty.", true, true);
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 384 pkt 2 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem czasu potrzebnego na przygotowanie i złożenie oferty.", true, true);
+                        }
+                        break;
+                    case "PARTNERSTWO_INNOWACYJNE":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 384 pkt 2 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem czasu potrzebnego na przygotowanie i złożenie oferty.", true, true);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 384 pkt 2 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem czasu potrzebnego na przygotowanie i złożenie oferty.", true, true);
+                        }
+                        break;
+                    case "PARTNERSTWO_INNOWACYJNE_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej " +
+                                "lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 384 pkt 2 ustawy Pzp, zamawiający wyznacza terminy składania ofert, " +
+                                "z uwzględnieniem czasu potrzebnego na przygotowanie i złożenie oferty.", true, true);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 384 pkt 2 ustawy Pzp, zamawiający wyznacza terminy " +
+                                "składania ofert, z uwzględnieniem czasu potrzebnego na przygotowanie i złożenie oferty.", true, true);
+                        }
+                        break;
+                    case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                            "ofert. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania ofert, " +
+                            "z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego do ich przygotowania i złożenia", true, true);
+                        break;
+                    case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta", true, true);
+                        break;
+                    case "DYNAMICZNY_SYSTEM_ZAKUPOW":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_DYNAMICZNYM_SYSTEMIE_ZAKUPOW') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej " +
+                                "lub data przekazania zaproszenia do potwierdzenia zainteresowania.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania wykonawcom zaproszenia do składania ofert.");
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+            } else if (typeOfOrderSelectValue === "ZAMOWIENIA_W_DZIEDZINIE_OBRONNOSCI_I_BEZPIECZENSTWA") {
+                switch (document.getElementById("modeSelect").value) {
+                    case "PRZETARG_OGRANICZONY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert.");
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert wstępnych.");
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu " +
+                                "składania ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający " +
+                                "wyznacza terminy składania ofert, z uwzględnieniem złożoności i specyfiki przedmiotu " +
+                                "zamówienia oraz czasu niezbędnego do ich przygotowania i złożenia.", true, true);
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.", false, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert wstępnych.");
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania " +
+                                "ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                                "do ich przygotowania i złożenia.", true, true);
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultInfoAlert("Data przekazania zaproszenia do składania ofert wstępnych.");
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania " +
+                                "ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                                "do ich przygotowania i złożenia.", true, true);
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultInfoAlert("Data przekazania ogłoszenia o zamówieniu Urzędowi Publikacji Unii Europejskiej.");
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                                "ofert ostatecznych. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania " +
+                                "ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                                "do ich przygotowania i złożenia", true, true);
+                        }
+                        break;
+                    case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania " +
+                            "ofert. Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania " +
+                            "ofert, z uwzględnieniem złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego " +
+                            "do ich przygotowania i złożenia", true, true);
+                        break;
+                    case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                        documentTypeSection.style.display = "none";
+                        setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta", true, true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } else if (procedureSelect.value.toUpperCase() === "KRAJOWA") {
+            switch (document.getElementById("modeSelect").value) {
+                case "TRYB_PODSTAWOWY_BEZ_NEGOCJACJI":
+                    documentTypeSection.style.display = "none";
+                    setResultInfoAlert("Data zamieszczenia ogłoszenia w Biuletynie Zamówień Publicznych");
+                    break;
+                case "TRYB_PODSTAWOWY_Z_MOZLIWOSCIA_NEGOCJACJI":
+                    if (documentTypeSelectValue === 'OFERTA') {
+                        setResultInfoAlert("Data zamieszczenia ogłoszenia w Biuletynie Zamówień Publicznych");
+                    } else if (documentTypeSelectValue === 'OFERTA_DODATKOWA') {
+                        setResultInfoAlert("Data przekazania zaproszenia do składania ofert dodatkowych");
+                    }
+                    break;
+                case "TRYB_PODSTAWOWY_Z_NEGOCJACJAMI":
+                    if (documentTypeSelectValue === 'OFERTA_PODLEGAJACA_NEGOCJACJOM') {
+                        setResultInfoAlert("Data zamieszczenia ogłoszenia w Biuletynie Zamówień Publicznych");
+                    } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                        setResultInfoAlert("Data przekazania zaproszenia do składania ofert ostatecznych");
+                    }
+                    break;
+                case "PARTNERSTWO_INNOWACYJNE":
+                    if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                        setResultInfoAlert("Data zamieszczenia ogłoszenia w Biuletynie Zamówień Publicznych");
+                    } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                        setResultInfoAlert("Data przekazania zaproszenia do składania ofert wstępnych");
+                    } else if (documentTypeSelectValue === 'OFERTA') {
+                        setResultInfoAlert("Data przekazania zaproszenia do składania ofert");
+                    }
+                    break;
+                case "NEGOCJACJE_BEZ_OGLOSZENIA":
+                    documentTypeSection.style.display = "none";
+                    setResultInfoAlert("Ustawodawca nie określił szczegółowych wymogów w zakresie terminu składania ofert. " +
+                        "Zgodnie z art. 131 ust.1 ustawy Pzp, zamawiający wyznacza terminy składania ofert, z uwzględnieniem" +
+                        " złożoności i specyfiki przedmiotu zamówienia oraz czasu niezbędnego do ich przygotowania i złożenia.", true, true);
+                    break;
+                case "ZAMOWIENIA_Z_WOLNEJ_REKI":
+                    documentTypeSection.style.display = "none";
+                    setResultInfoAlert("W trybie zamówienia z wolnej ręki, nie występuje oferta.", true, false);
+                    break;
+                default:
+                    break;
+            }
+        }
+        setDateCalculationResult()
+    }
+
+    function setDateCalculationResult() {
+        const resultInformationContainer = document.getElementById("resultInfo");
+        resultInformationContainer.innerHTML = "";
+        const procedureSelect = document.getElementById("procedureSelect");
+        const documentTypeSelectValue = document.getElementById("documentTypeSelect").value;
+        const kindOfOrderSelectValue = document.getElementById("kindOfOrderSelect").value;
+
+        if (procedureSelect.value.toUpperCase() === "UNIJNA") {
+            const typeOfOrderSelectValue = document.getElementById("typeOfOrderSelect").value;
+
+            if (typeOfOrderSelectValue === "ZAMOWIENIA_KLASYCZNE") {
+                switch (document.getElementById("modeSelect").value) {
+                    case "PRZETARG_NIEOGRANICZONY":
+                        let additionalText1 = "Jeżeli składanie ofert odbywa się w całości przy użyciu środków komunikacji " +
+                            "elektronicznej, termin nie może upłynąć wcześniej niż dnia " + calculateDate(30) + ". " +
+                            "Terminy ulegają wydłużeniu o 5 dni, jeżeli zamawiający nie może " +
+                            "udostępnić części SWZ na stronie internetowej prowadzonego postępowania."
+                        setResultCalculation(calculateDate(35), additionalText1);
+                        break;
+                    case "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA":
+                        let additionalText2 = "Termin ulega wydłużeniu o 5 dni, jeżeli zamawiający nie może udostępnić " +
+                            "części SWZ na stronie internetowej prowadzonego postępowania. Wydłużenie nie dotyczy sytuacji, " +
+                            "gdy skrócenie terminu składania ofert spowodowane jest pilną potrzebą udzielenia zamówienia. "
+                        setResultCalculation(calculateDate(15), additionalText2);
+                        break;
+                    case "PRZETARG_OGRANICZONY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            // let additionalText3 = "Jeżeli składanie ofert odbywa się w całości przy użyciu środków komunikacji " +
+                            //     "elektronicznej, termin nie może upłynąć wcześniej niż dnia " + calculateDate(25) + ". " +
+                            //     "Terminy ulegają wydłużeniu o 5 dni, jeżeli zamawiający nie może udostępnić części SWZ " +
+                            //     "na stronie internetowej prowadzonego postępowania."
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText4 = "Jeżeli składanie ofert odbywa się w całości przy użyciu środków komunikacji " +
+                                "elektronicznej, termin nie może upłynąć wcześniej niż dnia " + calculateDate(25) + ". " +
+                                "Terminy ulegają wydłużeniu o 5 dni, jeżeli zamawiający nie może udostępnić części SWZ " +
+                                "na stronie internetowej prowadzonego postępowania."
+                            setResultCalculation(calculateDate(30), additionalText4);
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            let additionalText5 = "Skrócenie terminu jest możliwe o ile zachodzi pilna potrzeba udzielenia " +
+                                "zamówienia, należycie uzasadniona przez zamawiającego"
+                            setResultCalculation(calculateDate(15), additionalText5, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText6 = "Termin ulega wydłużeniu o 5 dni, jeżeli zamawiający nie może udostępnić " +
+                                "części SWZ na stronie internetowej prowadzonego postępowania. Wydłużenie nie dotyczy sytuacji, " +
+                                "gdy skrócenie terminu składania ofert spowodowane jest pilną potrzebą udzielenia zamówienia. "
+                            setResultCalculation(calculateDate(10), additionalText6);
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            let additionalText7 = "Jeżeli składanie ofert odbywa się w całości przy użyciu środków komunikacji " +
+                                "elektronicznej, termin nie może upłynąć wcześniej niż dnia " + calculateDate(25) + ". " +
+                                "Terminy ulegają wydłużeniu o 5 dni, jeżeli zamawiający nie " +
+                                "może udostępnić części SWZ na stronie internetowej prowadzonego postępowania.  "
+                            setResultCalculation(calculateDate(30), additionalText7);
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            let additionalText8 = "Termin ulega wydłużeniu o 5 dni, jeżeli zamawiający nie może udostępnić " +
+                                "części SWZ na stronie internetowej prowadzonego postępowania. Wydłużenie nie dotyczy sytuacji, " +
+                                "gdy skrócenie terminu składania ofert spowodowane jest pilną potrzebą udzielenia zamówienia. "
+                            setResultCalculation(calculateDate(10), additionalText8);
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        }
+                        break;
+                    case "PARTNERSTWO_INNOWACYJNE":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultCalculation(calculateDate(30));
+                        }
+                        break;
+                    case "DYNAMICZNY_SYSTEM_ZAKUPOW":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_DYNAMICZNYM_SYSTEMIE_ZAKUPOW') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultCalculation(calculateDate(10));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            } else if (typeOfOrderSelectValue === "ZAMOWIENIA_SEKTOROWE") {
+                switch (document.getElementById("modeSelect").value) {
+                    case "PRZETARG_NIEOGRANICZONY":
+                        let additionalText9 = "jeżeli składanie ofert odbywa się w całości przy użyciu środków komunikacji " +
+                            "elektronicznej, termin nie może upłynąć wcześniej niż dnia " + calculateDate(30) + ". " +
+                            "Terminy ulegają wydłużeniu o 5 dni, jeżeli zamawiający nie może" +
+                            " udostępnić części SWZ na stronie internetowej prowadzonego postępowania.  "
+                        setResultCalculation(calculateDate(35), additionalText9);
+                        break;
+                    case "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA":
+                        let additionalText10 = "Termin ulega wydłużeniu o 5 dni, jeżeli zamawiający nie może udostępnić " +
+                            "części SWZ na stronie internetowej prowadzonego postępowania. Wydłużenie nie dotyczy sytuacji, " +
+                            "gdy skrócenie terminu składania ofert spowodowane jest pilną potrzebą udzielenia zamówienia.  "
+                        setResultCalculation(calculateDate(15), additionalText10);
+                        break;
+                    case "PRZETARG_OGRANICZONY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText11 = "Termin wyznacza się z uwzględnieniem czasu potrzebnego na " +
+                                "przygotowanie i złożenie oferty. Zamawiający może wyznaczyć <b>dowolny</b> termin składania " +
+                                "ofert, jeżeli wszyscy wykonawcy, którzy zostaną zaproszeni do składania ofert," +
+                                " wyrazili na to zgodę.";
+                            setResultCalculation(calculateDate(10), additionalText11);
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            let additionalText12 = "Skrócenie terminu jest możliwe: <ul> <li>o ile zachodzi pilna potrzeba " +
+                                "udzielenia zamówienia, należycie uzasadniona przez zamawiającego – art. 144 ust. 2 w zw. z art.. " +
+                                "379 ust. 1 ustawy Pzp. </li> <li>w wyjątkowych przypadkach – art. 379 ust. 3 pkt 1 ustawy Pzp. </li> </ul>";
+                            setResultCalculation(calculateDate(15), additionalText12, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText13 = "Termin wyznacza się z uwzględnieniem czasu potrzebnego na " +
+                                "przygotowanie i złożenie oferty. Zamawiający może wyznaczyć <b>dowolny</b> termin składania " +
+                                "ofert, jeżeli wszyscy wykonawcy, którzy zostaną zaproszeni do składania ofert," +
+                                " wyrazili na to zgodę.";
+                            setResultCalculation(calculateDate(10), additionalText13);
+                        }
+                        break;
+                    case "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText13 = "Termin wyznacza się z uwzględnieniem czasu potrzebnego na " +
+                                "przygotowanie i złożenie oferty. Zamawiający może wyznaczyć <b>dowolny</b> termin składania " +
+                                "ofert, jeżeli wszyscy wykonawcy, którzy zostaną zaproszeni do składania ofert," +
+                                " wyrazili na to zgodę.";
+                            setResultCalculation(calculateDate(10), additionalText13);
+                        }
+                        break;
+                    case "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            let additionalText14 = "Skrócenie terminu jest możliwe w wyjątkowych przypadkach – art. 381 ust. 3 pkt 1 ustawy Pzp.";
+                            setResultCalculation(calculateDate(15), additionalText14, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText14 = "Termin wyznacza się z uwzględnieniem czasu potrzebnego na " +
+                                "przygotowanie i złożenie oferty. Zamawiający może wyznaczyć <b>dowolny</b> termin składania " +
+                                "ofert, jeżeli wszyscy wykonawcy, którzy zostaną zaproszeni do składania ofert," +
+                                " wyrazili na to zgodę.";
+                            setResultCalculation(calculateDate(10), additionalText14);
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            let additionalText15 = "Skrócenie terminu jest możliwe w wyjątkowych przypadkach – art. 384 pkt 1 ustawy Pzp.";
+                            setResultCalculation(calculateDate(15), additionalText15, false);
+                        }
+                        break;
+                    case "PARTNERSTWO_INNOWACYJNE":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        }
+                        break;
+                    case "PARTNERSTWO_INNOWACYJNE_PROCEDURA_SKROCONA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            let additionalText16 = "Skrócenie terminu jest możliwe w wyjątkowych przypadkach – art. 384 pkt 1 ustawy Pzp.";
+                            setResultCalculation(calculateDate(15), additionalText16, false);
+                        }
+                        break;
+                    case "DYNAMICZNY_SYSTEM_ZAKUPOW":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_DYNAMICZNYM_SYSTEMIE_ZAKUPOW') {
+                            let additionalText17 = "W dynamicznym systemie zakupów minimalny termin składania wniosków o " +
+                                "dopuszczenie do udziału w dynamicznym systemie zakupów wynosi, co do zasady, co najmniej 30 " +
+                                "dni od dnia przekazania ogłoszenia o zamówieniu lub, w przypadku gdy okresowe ogłoszenie " +
+                                "informacyjne jest stosowane jako zaproszenie do ubiegania się o zamówienie, od dnia " +
+                                "przekazania zaproszenia do potwierdzenia zainteresowania i nie może być w żadnym " +
+                                "przypadku krótszy niż 15 dni.";
+                            setResultCalculation(calculateDate(30), additionalText17, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText18 = "W dynamicznym systemie zakupów termin składania ofert można ustalić " +
+                                "w drodze wzajemnego porozumienia między zamawiającym a wykonawcami dopuszczonymi do " +
+                                "udziału w postępowaniu, pod warunkiem że wszyscy wykonawcy mają tyle samo czasu na " +
+                                "przygotowanie i złożenie ofert. W przypadku nieosiągnięcia porozumienia w sprawie " +
+                                "terminu składania ofert termin ten wynosi co najmniej 10 dni od dnia przekazania " +
+                                "zaproszenia do składania ofert";
+                            setResultCalculation(calculateDate(10), additionalText18, false);
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+            } else if (typeOfOrderSelectValue === "ZAMOWIENIA_W_DZIEDZINIE_OBRONNOSCI_I_BEZPIECZENSTWA") {
+                switch (document.getElementById("modeSelect").value) {
+                    case "PRZETARG_OGRANICZONY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            let additionalText19 = "jeżeli zamawiający zapewnia na stronie internetowej prowadzonego " +
+                                "postępowania bezpłatny, pełny, bezpośredni i nieograniczony dostęp do SWZ od dnia " +
+                                "publikacji ogłoszenia o zamówieniu w Dzienniku Urzędowym Unii Europejskiej nie krócej " +
+                                "niż do dnia udzielenia zamówienia, termin może zostać skrócony o 5 dni – " +
+                                "art. 411 ust. 14 ustawy Pzp.";
+                            setResultCalculation(calculateDate(40), additionalText19);
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultCalculation(calculateDate(22));
+                        }
+                        break;
+                    case "PRZETARG_OGRANICZONY_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(10), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA') {
+                            setResultCalculation(calculateDate(10));
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            let additionalText20 = "Jeżeli zamawiający zapewnia na stronie internetowej prowadzonego " +
+                                "postępowania bezpłatny, pełny, bezpośredni i nieograniczony dostęp do SWZ od dnia " +
+                                "publikacji ogłoszenia o zamówieniu w Dzienniku Urzędowym Unii Europejskiej nie krócej " +
+                                "niż do dnia udzielenia zamówienia, termin może zostać skrócony o 5 dni" +
+                                " – art. 411 ust. 14 w zw. z art. 412 ust. 7 ustawy Pzp.";
+                            setResultCalculation(calculateDate(40), additionalText20);
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultCalculation(calculateDate(22));
+                        } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                            setResultCalculation(calculateDate(22));
+                        }
+                        break;
+                    case "NEGOCJACJE_Z_OGLOSZENIEM_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(10), null, false);
+                        } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                            setResultCalculation(calculateDate(10));
+                        }
+                        break;
+                    case "DIALOG_KONKURENCYJNY":
+                        if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                            setResultCalculation(calculateDate(30));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } else if (procedureSelect.value.toUpperCase() === "KRAJOWA") {
+            switch (document.getElementById("modeSelect").value) {
+                case "TRYB_PODSTAWOWY_BEZ_NEGOCJACJI":
+                    if (kindOfOrderSelectValue === "DOSTAWY") {
+                        setResultCalculation(calculateDate(7));
+                    } else if (kindOfOrderSelectValue === "USLUGI") {
+                        setResultCalculation(calculateDate(7));
+                    } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                        setResultCalculation(calculateDate(14));
+                    }
+                    break;
+                case "TRYB_PODSTAWOWY_Z_MOZLIWOSCIA_NEGOCJACJI":
+                    if (documentTypeSelectValue === 'OFERTA') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(14));
+                        }
+                    } else if (documentTypeSelectValue === 'OFERTA_DODATKOWA') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(5));
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(5));
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(5));
+                        }
+                    }
+                    break;
+                case "TRYB_PODSTAWOWY_Z_NEGOCJACJAMI":
+                    if (documentTypeSelectValue === 'OFERTA_PODLEGAJACA_NEGOCJACJOM') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(14));
+                        }
+                    } else if (documentTypeSelectValue === 'OFERTA_OSTATECZNA') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(5));
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(5));
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(10));
+                        }
+                    }
+                    break;
+                case "PARTNERSTWO_INNOWACYJNE":
+                    if (documentTypeSelectValue === 'WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(7), null, false);
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(7), null, false);
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(7), null, false);
+                        }
+                    } else if (documentTypeSelectValue === 'OFERTA_WSTEPNA') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(14));
+                        }
+                    } else if (documentTypeSelectValue === 'OFERTA') {
+                        if (kindOfOrderSelectValue === "DOSTAWY") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "USLUGI") {
+                            setResultCalculation(calculateDate(7));
+                        } else if (kindOfOrderSelectValue === "ROBOTY_BUDOWLANE") {
+                            setResultCalculation(calculateDate(14));
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    function setResultInfoAlert(info, hideDatePicker = false, hideFooter = false, hideResultBox = true) {
+        const dateContainer = document.getElementById("dateContainer");
+        const footer = document.getElementById("footer");
+        const resultBox = document.getElementById("resultBox");
+
+        if (hideDatePicker) {
+            dateContainer.style.display = "none";
+        } else {
+            dateContainer.style.display = "block";
+        }
+        if (hideFooter) {
+            footer.style.display = "none";
+            RESULT_DISPLAYED = true;
+        } else {
+            footer.style.display = "block";
+        }
+
+        if (hideResultBox) {
+            resultBox.style.display = "none";
+        } else {
+            resultBox.style.display = "block";
+        }
+
+        if (hideDatePicker && info) {
+            const alertLabel = document.getElementById("alertLabel");
+            alertLabel.innerText = info;
+            const alertContainer = document.getElementById("alert-container");
+            alertContainer.style.display = "block";
+            RESULT_DISPLAYED = true;
+        } else {
+            const datepickerLabelText = document.getElementById("datepickerLabel");
+            datepickerLabelText.innerText = info;
+            RESULT_DISPLAYED = true;
+        }
+    }
+
+    function setResultCalculation(formattedDate, additionalInfo, attachAdditionalText = true) {
+        let textInfo = "Termin składania oferty/wniosku nie może upłynąć wcześniej niż w dniu " + formattedDate + ". "
+        const additionalText = "<strong>WAŻNE</strong><br> W przypadku gdy zamawiający przewiduje możliwość albo wymaga złożenia oferty po: " +
+            "<ul><li>odbyciu przez wykonawcę wizji lokalnej lub</li><li>sprawdzeniu przez wykonawcę dokumentów niezbędnych " +
+            "do realizacji zamówienia dostępnych na miejscu u zamawiającego " +
+            " </li></ul><p>wyznaczony termin składania ofert musi być  dłuższy od ustawowego terminu minimalnego wskazanego powyżej.</p>";
+        const resultInformationContainer = document.getElementById("dateCalculationInfo");
+        resultInformationContainer.innerHTML = textInfo;
+        const additionalTextInfo = document.getElementById("additionalTextInfo");
+        const additionalTextInfoContainer = document.getElementById("additionalTextInfoContainer");
+        if (attachAdditionalText) {
+            additionalTextInfoContainer.style.display = "block";
+            additionalTextInfo.innerHTML = additionalText;
+        }
+        if (additionalInfo) {
+            additionalTextInfoContainer.style.display = "block";
+            additionalTextInfo.innerHTML = additionalInfo;
+        } else if (!additionalInfo && !attachAdditionalText){
+            additionalTextInfoContainer.style.display = "none";
+        }
+    }
+
+    function handleProcedureChange(isFinalCalculation) {
+        const validationContainer = document.getElementById("validation-container");
+        if (VALIDATION_ERROR) {
+            validationContainer.style.display = "block";
+        } else {
+            validationContainer.style.display = "none";
+            handleProcedureChangeAfterValidation(isFinalCalculation);
+        }
+    }
+
+    function handleProcedureChangeAfterValidation(isFinalCalculation) {
+        const alertContainer = document.getElementById("alert-container");
+        alertContainer.style.display = "none";
+        document.getElementById("footer").style.display = 'block';
+        const resultInformationContainer = document.getElementById("resultInfo");
+        resultInformationContainer.innerHTML = "";
+        if (!isFinalCalculation) {
+            documentTypeSelect.innerHTML = "";
+        }
+        const procedureSelect = document.getElementById("procedureSelect");
+        const typeOfOrderSection = document.getElementById("typeOfOrderSection");
+        const documentTypeSection = document.getElementById("documentTypeSection");
+
+        if (!isFinalCalculation) {
+            if (procedureSelect.value.toUpperCase() === "UNIJNA") {
+                const typeOfOrderSelect = document.getElementById("typeOfOrderSelect");
+                typeOfOrderSection.style.display = "block";
+                switch (typeOfOrderSelect.value) {
+                    case "ZAMOWIENIA_KLASYCZNE":
+                        setUnijnaKlasycznaOptions();
+                        break;
+                    case "ZAMOWIENIA_SEKTOROWE":
+                        setUnijnaSektoroweOptions();
+                        break;
+                    case "ZAMOWIENIA_W_DZIEDZINIE_OBRONNOSCI_I_BEZPIECZENSTWA":
+                        setUnijnaObronnoscOptions();
+                        break;
+                    default:
+                        resetSelect();
+                        break;
+                }
+            } else if (procedureSelect.value.toUpperCase() === "KRAJOWA") {
+                typeOfOrderSection.style.display = "none";
+                documentTypeSection.style.display = "none";
+                setKrajowaTrybOptions();
+            } else {
+                hideSections();
+            }
+        }
+        handleModeChange(isFinalCalculation);
+    }
+
+    function resetSelect() {
+        var select = document.getElementById('modeSelect');
+        // Usuń wszystkie istniejące opcje
+        select.innerHTML = '';
+        // Dodaj pierwszą opcję
+        var option = document.createElement('option');
+        option.value = '';
+        option.text = 'Wybierz';
+        select.appendChild(option);
+        // Wybierz pierwszą opcję
+        select.selectedIndex = 0;
+        // Wywołaj zdarzenie zmiany wartości
+        var event = new Event('change');
+        select.dispatchEvent(event);
+    }
+
+    function isElementVisible(id) {
+        const element = document.getElementById(id);
+        const displayPropertyValue = window.getComputedStyle(element, null).getPropertyValue("display");
+        if (displayPropertyValue === "none") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function getSelectedOptionValue(selectId) {
+        // var selectElement = document.getElementById("procedureSelect");
+        var selectElement = document.getElementById(selectId);
+        var selectedIndex = selectElement.selectedIndex;
+        var selectedOptionValue = selectElement.options[selectedIndex].value;
+        return selectedOptionValue;
+    }
+
+    function validateInputs(clearError = false, elementName, showResults = false) {
+        const kindOfOrderSelectLabel = document.getElementById('kindOfOrderSelectLabel');
+        const kindOfOrderSelect = document.getElementById('kindOfOrderSelect');
+        const validationContainer = document.getElementById("validation-container");
+
+        const procedureSelect = document.getElementById('procedureSelect');
+        const procedureSelectLabel = document.getElementById('procedureSelectLabel');
+
+        const modeSelect = document.getElementById('modeSelect');
+        const modeSelectLabel = document.getElementById('modeSelectLabel');
+
+        const typeOfOrderSelect = document.getElementById('typeOfOrderSelect');
+        const typeOfOrderSelectLabel = document.getElementById('typeOfOrderSelectLabel');
+
+        const dateSelect = document.getElementById('date');
+        const dateSelectLabel = document.getElementById('datepickerLabel');
+
+        if (RESULT_DISPLAYED && !showResults) {
+            clearResults()
+        } else if (showResults) {
+            VALIDATION_ERROR = false;
+            // KIND_OF_ORDER_SELECT
+            if (!kindOfOrderSelect.value || kindOfOrderSelect.innerText === 'Wybierz') {
+                kindOfOrderSelectLabel.classList.add('highlight-red');
+                validationContainer.style.display = 'block';
+                VALIDATION_ERROR = true;
+            }
+
+            // PROCEDURE_SELECT
+            if (getSelectedOptionValue("procedureSelect") === "" || getSelectedOptionValue("procedureSelect") === "Wybierz") {
+                procedureSelectLabel.classList.add('highlight-red');
+                validationContainer.style.display = 'block';
+                VALIDATION_ERROR = true;
+            }
+
+            // MODE_SELECT
+            if (!modeSelect.value || modeSelect.innerText === 'Wybierz') {
+                modeSelectLabel.classList.add('highlight-red');
+                validationContainer.style.display = 'block';
+                VALIDATION_ERROR = true;
+            }
+
+            // TYPE_OF_ORDER_SELECT
+            if (isElementVisible("typeOfOrderSection")) {
+                if (!typeOfOrderSelect.value || typeOfOrderSelect.innerText === 'Wybierz') {
+                    typeOfOrderSelectLabel.classList.add('highlight-red');
+                    validationContainer.style.display = 'block';
+                    VALIDATION_ERROR = true;
+                }
+            }
+
+            // DOCUMENT_TYPE_SELECT
+            if (isElementVisible("documentTypeSection")) {
+                const documentTypeSelect = document.getElementById("documentTypeSelect");
+                if (!documentTypeSelect.value || documentTypeSelect.innerText === 'Wybierz') {
+                    documentTypeSelectLabel.classList.add('highlight-red');
+                    validationContainer.style.display = 'block';
+                    VALIDATION_ERROR = true;
+                }
+            }
+
+            // DATE_PICKER
+            if (isElementVisible("dateContainer")) {
+                if (!dateSelect.value) {
+                    dateSelectLabel.classList.add('highlight-red');
+                    validationContainer.style.display = 'block';
+                    VALIDATION_ERROR = true;
+                } else {
+                    dateSelectLabel.classList.remove('highlight-red');
+                    VALIDATION_ERROR = false;
+                }
+            }
+
+        } else {
+            switch (elementName) {
+                case "KIND_OF_ORDER_SELECT":
+                    if (!kindOfOrderSelect.value || kindOfOrderSelect.innerText === 'Wybierz') {
+                        kindOfOrderSelectLabel.classList.add('highlight-red');
+                        validationContainer.style.display = 'block';
+                        VALIDATION_ERROR = true;
+                    } else {
+                        kindOfOrderSelectLabel.classList.remove('highlight-red');
+                        validationContainer.style.display = 'none';
+                        VALIDATION_ERROR = false;
+                        handleProcedureChange(false);
+                    }
+                    break;
+                case "PROCEDURE_SELECT":
+                    if (!kindOfOrderSelect.value || kindOfOrderSelect.innerText === 'Wybierz') {
+                        kindOfOrderSelectLabel.classList.add('highlight-red');
+                        // kindOfOrderSelectAppendElement.classList.add('highlight-red');
+                        procedureSelectLabel.classList.remove('highlight-red');
+                        // procedureSelectAppendElement.classList.remove('highlight-red');
+                        validationContainer.style.display = 'block';
+                        VALIDATION_ERROR = true;
+                    } else {
+                        kindOfOrderSelectLabel.classList.remove('highlight-red');
+                        procedureSelectLabel.classList.remove('highlight-red');
+                        typeOfOrderSelectLabel.classList.remove('highlight-red');
+                        validationContainer.style.display = 'none';
+                        VALIDATION_ERROR = false;
+                    }
+                    break;
+                case "MODE_SELECT":
+                    if (!kindOfOrderSelect.value || kindOfOrderSelect.innerText === 'Wybierz') {
+                        kindOfOrderSelectLabel.classList.add('highlight-red');
+                        // kindOfOrderSelectAppendElement.classList.add('highlight-red');
+                        validationContainer.style.display = 'block';
+                        VALIDATION_ERROR = true;
+                    }
+                    if (!procedureSelect.value || procedureSelect.innerText === 'Wybierz') {
+                        procedureSelectLabel.classList.add('highlight-red');
+                        // procedureSelectAppendElement.classList.add('highlight-red');
+                        validationContainer.style.display = 'block';
+                        VALIDATION_ERROR = true;
+                    }
+                    if ((kindOfOrderSelect.value && kindOfOrderSelect.innerText !== 'Wybierz') &&
+                        (procedureSelect.value && procedureSelect.innerText !== 'Wybierz')) {
+                        procedureSelectLabel.classList.remove('highlight-red');
+                        modeSelectLabel.classList.remove('highlight-red');
+                        validationContainer.style.display = 'none';
+                        VALIDATION_ERROR = false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
+
+    function setUnijnaSektorowePrzetargOgraniczonyOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaSektorowePrzetargOgraniczonyProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaSektoroweNegocjacjeZOgloszeniemOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+
+    function setUnijnaSektoroweNegocjacjeZOgloszeniemProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaSektoroweDialogKonkurencyjnyOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaSektoroweDialogKonkurencyjnyProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaSektorowePartnerstwoInnowacyjneOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaSektorowePartnerstwoInnowacyjneProceduraSkroconaOptions() {
+        const options = [
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+
+    function setUnijnaSektoroweDynamicznySystemZakupowOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w dynamicznym systemie zakupów",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_DYNAMICZNYM_SYSTEMIE_ZAKUPOW"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaPrzetargOgraniczonyOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaPrzetargOgraniczonyProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaPrzetargOgraniczonyPilnaPotrzebaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaNegocjacjeZOgloszeniemOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta ostateczna", value: "OFERTA_OSTATECZNA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaNegocjacjeZOgloszeniemProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta ostateczna", value: "OFERTA_OSTATECZNA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaNegocjacjeZOgloszeniemPilnaPotrzebaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta ostateczna", value: "OFERTA_OSTATECZNA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaZamowieniaWDziedzinieObronnosciIBezpieczenstwaDialogKonkurencyjnyOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaKlasyczneDynamicznySystemZakupowOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w dynamicznym systemie zakupów",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_DYNAMICZNYM_SYSTEMIE_ZAKUPOW"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaKlasycznePartnerstwoInnowacyjneOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaKlasyczneDialogKonkurencyjnyOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaKlasyczneNegocjacjeZOgloszeniemProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta ostateczna", value: "OFERTA_OSTATECZNA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaKlasyczneNegocjacjeZOgloszeniemOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta ostateczna", value: "OFERTA_OSTATECZNA"}
+        ];
+        const documentTypeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, documentTypeSelect);
+    }
+
+    function setUnijnaKlasycznePrzetargOgraniczonyProceduraSkroconaOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const modeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+
+    function setUnijnaKlasycznePrzetargOgraniczonyOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const modeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+
+    function setKrajowaPartnerstwoInnowacyjneOptions() {
+        const options = [
+
+            {
+                text: "Wniosek o dopuszczenie do udziału w postępowaniu",
+                value: "WNIOSEK_O_DOPUSZCZENIE_DO_UDZIALU_W_POSTEPOWANIU"
+            },
+            {text: "Oferta wstępna", value: "OFERTA_WSTEPNA"},
+            {text: "Oferta", value: "OFERTA"}
+        ];
+        const modeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+
+    function setKrajowaZMozliwosciaNegocjacjiOptions() {
+        const options = [
+
+            {text: "Oferta", value: "OFERTA"},
+            {text: "Oferta dodatkowa", value: "OFERTA_DODATKOWA"}
+        ];
+        const modeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+
+    function setKrajowaPodstawowyZNegocjacjamiOptions() {
+        const options = [
+
+            {text: "Oferta podlegająca negocjacjom", value: "OFERTA_PODLEGAJACA_NEGOCJACJOM"},
+            {text: "Oferta ostateczna", value: "OFERTA_OSTATECZNA"}
+        ];
+        const modeSelect = document.getElementById("documentTypeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+    function setKrajowaTrybOptions() {
+        const options = [
+            {text: "Tryb podstawowy bez negocjacji", value: "TRYB_PODSTAWOWY_BEZ_NEGOCJACJI"},
+            {text: "Tryb podstawowy z możliwością negocjacji", value: "TRYB_PODSTAWOWY_Z_MOZLIWOSCIA_NEGOCJACJI"},
+            {text: "Tryb podstawowy z negocjacjami", value: "TRYB_PODSTAWOWY_Z_NEGOCJACJAMI"},
+            {text: "Partnerstwo innowacyjne", value: "PARTNERSTWO_INNOWACYJNE"},
+            {text: "Negocjacje bez ogłoszenia", value: "NEGOCJACJE_BEZ_OGLOSZENIA"},
+        ];
+        const modeSelect = document.getElementById("modeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+    function setUnijnaKlasycznaOptions() {
+        const options = [
+            {text: "Przetarg nieograniczony", value: "PRZETARG_NIEOGRANICZONY"},
+            {
+                text: "Przetarg nieograniczony - procedura skrócona",
+                value: "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA"
+            },
+            {text: "Przetarg ograniczony", value: "PRZETARG_OGRANICZONY"},
+            {text: "Przetarg ograniczony - procedura skrócona", value: "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA"},
+            {text: "Negocjacje z ogłoszeniem", value: "NEGOCJACJE_Z_OGLOSZENIEM"},
+            {
+                text: "Negocjacje z ogłoszeniem - procedura skrócona",
+                value: "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA"
+            },
+            {text: "Dialog konkurencyjny", value: "DIALOG_KONKURENCYJNY"},
+            {text: "Partnerstwo innowacyjne", value: "PARTNERSTWO_INNOWACYJNE"},
+            {text: "Negocjacje bez ogłoszenia", value: "NEGOCJACJE_BEZ_OGLOSZENIA"},
+            {text: "Zamówienia z wolnej ręki", value: "ZAMOWIENIA_Z_WOLNEJ_REKI"},
+            {text: "Dynamiczny system zakupów", value: "DYNAMICZNY_SYSTEM_ZAKUPOW"},
+        ];
+        const modeSelect = document.getElementById("modeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+    function setUnijnaSektoroweOptions() {
+        const options = [
+            {text: "Przetarg nieograniczony", value: "PRZETARG_NIEOGRANICZONY"},
+            {
+                text: "Przetarg nieograniczony – procedura skrócona",
+                value: "PRZETARG_NIEOGRANICZONY_PROCEDURA_SKROCONA"
+            },
+            {text: "Przetarg ograniczony", value: "PRZETARG_OGRANICZONY"},
+            {text: "Przetarg ograniczony – procedura skrócona", value: "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA"},
+            {text: "Sektorowe negocjacje z ogłoszeniem", value: "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM"},
+            {
+                text: "Sektorowe negocjacje z ogłoszeniem - procedura skrócona",
+                value: "SEKTOROWE_NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA"
+            },
+            {text: "Dialog konkurencyjny", value: "DIALOG_KONKURENCYJNY"},
+            {text: "Dialog konkurencyjny – procedura skrócona", value: "DIALOG_KONKURENCYJNY_PROCEDURA_SKROCONA"},
+            {text: "Partnerstwo innowacyjne", value: "PARTNERSTWO_INNOWACYJNE"},
+            {
+                text: "Partnerstwo innowacyjne – procedura skrócona",
+                value: "PARTNERSTWO_INNOWACYJNE_PROCEDURA_SKROCONA"
+            },
+            {text: "Negocjacje bez ogłoszenia", value: "NEGOCJACJE_BEZ_OGLOSZENIA"},
+            {text: "Zamówienia z wolnej ręki", value: "ZAMOWIENIA_Z_WOLNEJ_REKI"},
+            {text: "Dynamiczny system zakupów", value: "DYNAMICZNY_SYSTEM_ZAKUPOW"}
+        ];
+        const modeSelect = document.getElementById("modeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+    function setUnijnaObronnoscOptions() {
+        const options = [
+            {text: "Przetarg ograniczony", value: "PRZETARG_OGRANICZONY"},
+            {
+                text: "Przetarg ograniczony – procedura skrócona z uwagi na publikację wstępnego ogłoszenia informacyjnego",
+                value: "PRZETARG_OGRANICZONY_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO"
+            },
+            {
+                text: "Przetarg ograniczony – pilna potrzeba udzielenia zamówienia",
+                value: "PRZETARG_OGRANICZONY_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA"
+            },
+            {text: "Negocjacje z ogłoszeniem", value: "NEGOCJACJE_Z_OGLOSZENIEM"},
+            {
+                text: "Negocjacje z ogłoszeniem – procedura skrócona z uwagi na publikację wstępnego ogłoszenia informacyjnego",
+                value: "NEGOCJACJE_Z_OGLOSZENIEM_PROCEDURA_SKROCONA_Z_UWAGI_NA_PUBLIKACJE_WSTEPNEGO_OGLOSZENIA_INFORMACYJNEGO"
+            },
+            {
+                text: "Negocjacje z ogłoszeniem - pilna potrzeba udzielenia zamówienia",
+                value: "NEGOCJACJE_Z_OGLOSZENIEM_PILNA_POTRZEBA_UDZIELENIA_ZAMOWIENIA"
+            },
+            {text: "Dialog konkurencyjny", value: "DIALOG_KONKURENCYJNY"},
+            {text: "Negocjacje bez ogłoszenia", value: "NEGOCJACJE_BEZ_OGLOSZENIA"},
+            {text: "Zamówienia z wolnej ręki", value: "ZAMOWIENIA_Z_WOLNEJ_REKI"}
+        ];
+        const modeSelect = document.getElementById("modeSelect");
+        setOptionsInSelect(options, modeSelect);
+    }
+
+    function setOptionsInSelect(options, select) {
+        select.style.display = "none";
+        select.innerHTML = "";
+        options.forEach(function (option) {
+            const optionElement = document.createElement("option");
+            optionElement.textContent = option.text;
+            optionElement.value = option.value;
+            select.appendChild(optionElement);
+        });
+        select.style.display = "block";
+        $('#' + select.id).selectpicker('refresh');
+    }
+
+
+    function hideSections() {
+        document.getElementById("typeOfOrderSection").style.display = "none";
+    }
+
+    if (document.readyState !== 'loading') {
+        CONTINUE_WORKING = true;
+        handleProcedureChange(false);
+    } else {
+        CONTINUE_WORKING = true;
+        document.addEventListener('DOMContentLoaded', function () {
+            handleProcedureChange(false);
+        });
+    }
+
+    const HOLIDAYS = [
+        "1.01.2023",
+        "6.01.2023",
+        "9.04.2023",
+        "10.04.2023",
+        "1.05.2023",
+        "3.05.2023",
+        "19.05.2023",
+        "30.05.2023",
+        "15.8.2023",
+        "1.11.2023",
+        "11.11.2023",
+        "25.12.2023",
+        "26.12.2023",
+		
+        "1.01.2024",
+        "6.01.2024",
+        "31.03.2024",
+        "1.04.2024",
+        "1.05.2024",
+        "3.05.2024",
+        "19.05.2024",
+        "30.05.2024",
+        "15.08.2024",
+        "1.11.2024",
+        "11.11.2024",
+        "25.12.2024",
+        "26.12.2024",
+		
+		"1.01.2025",
+		"6.01.2025",
+		"20.04.2025",
+		"21.04.2025",
+		"1.05.2025",
+		"3.05.2025",
+		"8.06.2025",
+		"19.06.2025",
+		"15.08.2025",
+		"1.11.2025",
+		"11.11.2025",
+		"25.12.2025",
+		"26.12.2025",
+		
+		"1.01.2026",
+		"6.01.2026",
+		"5.04.2026",
+		"6.04.2026",
+		"1.05.2026",
+		"3.05.2026",
+		"24.05.2026",
+		"4.06.2026",
+		"15.08.2026",
+		"1.11.2026",
+		"11.11.2026",
+		"25.12.2026",
+		"26.12.2026",
+		
+		"1.01.2027",
+		"6.01.2027",
+		"28.03.2027",
+		"29.03.2027",
+		"1.05.2027",
+		"3.05.2027",
+		"16.05.2027",
+		"27.05.2027",
+		"15.08.2027",
+		"1.11.2027",
+		"11.11.2027",
+		"25.12.2027",
+		"26.12.2027",
+		
+    ];
+
+    function calculateDate(number) {
+        let pickedDate = $("#date").datepicker('getDate');
+        if (pickedDate == null) {
+            pickedDate = new Date();
+        }
+        if (number == null) {
+            number = 0;
+        }
+        pickedDate.setDate(pickedDate.getDate() + number + 1);
+
+        while (true) {
+            const formattedDate = formatDate(pickedDate);
+            if (HOLIDAYS.includes(formattedDate)) {
+                pickedDate.setDate(pickedDate.getDate() + 1);
+            } else {
+                if (pickedDate.getDay() === 6 || pickedDate.getDay() === 0) {
+                    const daysToAdd = pickedDate.getDay() === 6 ? 2 : 1;
+                    pickedDate.setDate(pickedDate.getDate() + daysToAdd);
+                } else {
+                    return formatDate(pickedDate);
+                }
+            }
+        }
+    }
+
+    function formatDate(date) {
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const formattedMonth = month < 10 ? `0${month}` : month;
+        return `${day}.${formattedMonth}.${year}`;
+    }
+
+</script>
+
+
+<script>
+
+    function showResults() {
+        validateInputs(false, 'MODE_SELECT', true);
+        if (!VALIDATION_ERROR) {
+            handleProcedureChange(true);
+            document.getElementById("resultBox").style.display = "block";
+        }
+    }
+
+    function hardReset() {
+        window.location.reload();
+        return true;
+    }
+    function clearResults() {
+        document.getElementById("resultBox").style.display = "none";
+    }
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#date").datepicker({
+            format: "dd.mm.yyyy",
+            language: "pl",
+            changeMonth: true,
+            changeYear: true,
+            regional: "pl"
+        });
+    });
+
+</script>
+
+</body>
+</html>
